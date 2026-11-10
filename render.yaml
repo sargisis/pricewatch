@@ -1,0 +1,14 @@
+# Render blueprint: https://render.com/docs/blueprint-spec
+# New + → Blueprint → pick this repository. Render asks for DATABASE_URL.
+services:
+  - type: web
+    name: pricewatch
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # PostgreSQL connection string, e.g. from neon.tech (must end with ?sslmode=require)
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
